@@ -2,6 +2,8 @@
 
 <!-- Project has been developing at Alura's React 4 Immersion -->
 
+![1](https://user-images.githubusercontent.com/63374582/151678402-f5c29128-fc78-4fda-b16c-809bba52b9f6.JPG)
+
 
 ## Technologies
 
