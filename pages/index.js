@@ -35,6 +35,7 @@ function Titulo(props) {
 export default function PaginaInicial() {
   // const username = 'mvnulman';
   const [username, setUsername] = useState("mvnulman");
+  const [githubInfo, setGithubInfo] = useState([]);
   const router = useRouter();
 
   return (
@@ -113,6 +114,11 @@ export default function PaginaInicial() {
               onChange={function (event) {
                 const inputField = event.target.value;
                 setUsername(inputField);
+                fetch(`https://api.github.com/users/${inputField}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    setGithubInfo(data)
+                  })
               }}
               fullWidth
               textFieldColors={{
