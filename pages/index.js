@@ -34,7 +34,7 @@ function Titulo(props) {
 
 export default function PaginaInicial() {
   // const username = 'mvnulman';
-  const [username, setUsername] = useState("mvnulman");
+  const [username, setUsername] = useState("");
   const [githubInfo, setGithubInfo] = useState([]);
   const router = useRouter();
 
@@ -77,8 +77,12 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (event) {
               event.preventDefault();
-              router.push('chat');
-
+              if(username.trim() == "") {
+                alert("Please enter a username!");
+                return;
+              } else {
+                router.push('chat');
+              }
             }}
             styleSheet={{
               display: "flex",
