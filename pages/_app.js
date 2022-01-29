@@ -27,7 +27,7 @@ function GlobalStyle() {
     );
   }
   
-  export default function CustomApp({ Component, pageProps }) {
+  export default function CustomApp({ Component, pageProps }) { 
     return (
         <>
             <GlobalStyle />
