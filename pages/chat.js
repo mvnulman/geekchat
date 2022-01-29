@@ -1,30 +1,20 @@
 import { Box, Text, TextField, Image, Button } from "@skynexui/components";
-import React from "react";
+import { useState } from "react";
 import appConfig from "../config.json";
+import { IoClose } from "react-icons/io5";
 
-export default function ChatPage() {
-  const [message, setmessage] = React.useState("");
-  const [messageList, setmessageList] = React.useState([]);
+export default function ChatPage(props) {
+  const [message, setmessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
 
-  /*
-    // Usuário
-    - Usuário digita no campo textarea
-    - Aperta enter para enviar
-    - Tem que adicionar o texto na listagem
-    
-    // Dev
-    - [X] Campo criado
-    - [X] Vamos usar o onChange usa o useState (ter if pra caso seja enter pra limpar a variavel)
-    - [X] Lista de mensagens 
-    */
-  function handleNewMessage(newmessage) {
+  function handleNewMessage(newMessage) {
     const message = {
       id: messageList.length + 1,
-      de: "vanessametonini",
-      texto: newmessage,
+      from: "vanessametonini",
+      text: newMessage,
     };
 
-    setmessageList([message, ...messageList]);
+    setMessageList([message, ...messageList]);
     setmessage("");
   }
 
@@ -35,10 +25,10 @@ export default function ChatPage() {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: appConfig.theme.colors.primary[500],
-        backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)`,
+        backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/12/vintage-computers-collection.jpg)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        backgroundBlendMode: "multiply",
+        backgroundBlendMofrom: "multiply",
         color: appConfig.theme.colors.neutrals["000"],
       }}
     >
@@ -69,7 +59,17 @@ export default function ChatPage() {
             padding: "16px",
           }}
         >
-          <MessageList mensagens={messageList} />
+          <MessageList
+            messages={messageList}
+            onDelete={(id) => {
+              setMessageList(
+                messageList.filter((element) => {
+                  return element.id !== id;
+                })
+              );
+            }}
+          />
+
           {/* {messageList.map((messageAtual) => {
                         return (
                             <li key={messageAtual.id}>
@@ -109,6 +109,31 @@ export default function ChatPage() {
                 color: appConfig.theme.colors.neutrals[200],
               }}
             />
+            <Button
+              type="button"
+              label="Send"
+              buttonColors={{
+                contrastColor: appConfig.theme.colors.neutrals["000"],
+                mainColor: appConfig.theme.colors.primary[900],
+                mainColorLight: appConfig.theme.colors.primary[900],
+                mainColorStrong: appConfig.theme.colors.primary[900],
+              }}
+              styleSheet={{
+                marginBottom: "10px",
+                width: "60px",
+                height: "60px",
+                borderRadius: "10px",
+                backgroundColor: appConfig.theme.colors.neutrals[900],
+              }}
+              onClick={() => {
+                if (message.length >= 1) {
+                  handleNewMessage(message);
+                  document.querySelector("textarea").focus();
+                }
+              }}
+            >
+              OK
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -141,7 +166,6 @@ function Header() {
 }
 
 function MessageList(props) {
-  console.log(props);
   return (
     <Box
       tag="ul"
@@ -154,7 +178,7 @@ function MessageList(props) {
         marginBottom: "16px",
       }}
     >
-      {props.mensagens.map((message) => {
+      {props.messages.map((message) => {
         return (
           <Text
             key={message.id}
@@ -172,32 +196,51 @@ function MessageList(props) {
               styleSheet={{
                 marginBottom: "8px",
                 display: "flex",
-                alignItems: "center"
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              <Image
+              <Box
                 styleSheet={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  styleSheet={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                    marginRight: "8px",
+                  }}
+                  src={`https://github.com/vanessametonini.png`}
+                />
+                <Text tag="strong">{message.from}</Text>
+                <Text
+                  styleSheet={{
+                    fontSize: "10px",
+                    marginLeft: "8px",
+                    color: appConfig.theme.colors.neutrals[300],
+                  }}
+                  tag="span"
+                >
+                  {new Date().toLocaleDateString()}
+                </Text>
+              </Box>
+
+              <IoClose
+                style={{
+                  cursor: "pointer",
                   width: "20px",
                   height: "20px",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                  marginRight: "8px",
                 }}
-                src={`https://github.com/vanessametonini.png`}
+                onClick={() => {
+                  props.onDelete(message.id);
+                }}
               />
-              <Text tag="strong">{message.de}</Text>
-              <Text
-                styleSheet={{
-                  fontSize: "10px",
-                  marginLeft: "8px",
-                  color: appConfig.theme.colors.neutrals[300],
-                }}
-                tag="span"
-              >
-                {new Date().toLocaleDateString()}
-              </Text>
             </Box>
-            {message.texto}
+            {message.text}
           </Text>
         );
       })}
