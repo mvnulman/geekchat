@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
 import appConfig from "../config.json";
@@ -63,6 +63,7 @@ export default function PaginaInicial() {
               sm: "row",
             },
             width: "100%",
+            height: "400px",
             maxWidth: "700px",
             borderRadius: "5px",
             padding: "32px",
@@ -151,6 +152,7 @@ export default function PaginaInicial() {
               flexDirection: "column",
               alignItems: "center",
               maxWidth: "200px",
+              height: "325px",
               padding: "16px",
               backgroundColor: appConfig.theme.colors.neutrals[800],
               border: "1px solid",
@@ -177,6 +179,33 @@ export default function PaginaInicial() {
               }}
             >
               {username.length > 2 && username.length !== null && username.trim() ? username : "User not found"}
+            </Text>
+            <Text
+              variant="body4"
+              styleSheet={{
+                margin: '5px',
+                color: appConfig.theme.colors.neutrals[300]
+              }}
+            >
+             Name: {githubInfo.name}
+            </Text>
+            <Text
+              variant="body4"
+              styleSheet={{
+                margin: '5px',
+                color: appConfig.theme.colors.neutrals[300]
+              }}
+            >
+             Location: {githubInfo.location}
+            </Text>
+            <Text
+              variant="body4"
+              styleSheet={{
+                margin: '5px',
+                color: appConfig.theme.colors.neutrals[300]
+              }}
+            >
+             Followers: {githubInfo.followers}
             </Text>
           </Box>
           {/* Photo Area */}
