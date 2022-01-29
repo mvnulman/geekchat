@@ -1,6 +1,6 @@
-# Geek-Chat!
+# Geek Chat! (Under Construction...🚧)
 
-Project made at Alura's React 4 Immersion
+<!-- Project has been developing at Alura's React 4 Immersion -->
 
 
 ## Technologies
