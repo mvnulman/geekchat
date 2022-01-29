@@ -75,7 +75,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (event) {
               event.preventDefault();
-              router.push('chat')
+              router.push('chat');
 
             }}
             styleSheet={{
@@ -108,6 +108,7 @@ export default function PaginaInicial() {
             }}/> */}
 
             <TextField
+              placeholder="Type two or more characters..."
               value={username}
               onChange={function (event) {
                 const inputField = event.target.value;
@@ -158,7 +159,7 @@ export default function PaginaInicial() {
                 borderRadius: "50%",
                 marginBottom: "16px",
               }}
-              src={`https://github.com/${username}.png`}
+              src={username.length > 2 && username.length !== null && username.trim() ? `https://github.com/${username}.png` : `https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/1024px-Missing_avatar.svg.png`}
             />
             <Text
               variant="body4"
@@ -169,7 +170,7 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {username}
+              {username.length > 2 && username.length !== null && username.trim() ? username : "User not found"}
             </Text>
           </Box>
           {/* Photo Area */}
