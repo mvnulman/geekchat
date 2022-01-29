@@ -78,11 +78,11 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (event) {
               event.preventDefault();
-              if(username.trim() == "") {
+              if (username.trim() == "") {
                 alert("Please enter a username!");
                 return;
               } else {
-                              router.push('chat');
+                router.push("chat");
               }
             }}
             styleSheet={{
@@ -121,10 +121,10 @@ export default function PaginaInicial() {
                 const inputField = event.target.value;
                 setUsername(inputField);
                 fetch(`https://api.github.com/users/${inputField}`)
-                  .then(response => response.json())
-                  .then(data => {
-                    setGithubInfo(data)
-                  })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    setGithubInfo(data);
+                  });
               }}
               fullWidth
               textFieldColors={{
@@ -172,7 +172,13 @@ export default function PaginaInicial() {
                 borderRadius: "50%",
                 marginBottom: "16px",
               }}
-              src={username.length > 2 && username.length !== null && username.trim() ? `https://github.com/${username}.png` : `https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/1024px-Missing_avatar.svg.png`}
+              src={
+                username.length > 2 &&
+                username.length !== null &&
+                username.trim()
+                  ? `https://github.com/${username}.png`
+                  : `https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Missing_avatar.svg/1024px-Missing_avatar.svg.png`
+              }
             />
             <Text
               variant="body4"
@@ -183,34 +189,38 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {username.length > 2 && username.length !== null && username.trim() ? username : "User not found"}
+              {username.length > 2 &&
+              username.length !== null &&
+              username.trim()
+                ? username
+                : "User not found"}
             </Text>
             <Text
               variant="body4"
               styleSheet={{
-                margin: '5px',
-                color: appConfig.theme.colors.neutrals[300]
+                margin: "5px",
+                color: appConfig.theme.colors.neutrals[300],
               }}
             >
-             Name: {githubInfo.name}
+              Name: {githubInfo.name}
             </Text>
             <Text
               variant="body4"
               styleSheet={{
-                margin: '5px',
-                color: appConfig.theme.colors.neutrals[300]
+                margin: "5px",
+                color: appConfig.theme.colors.neutrals[300],
               }}
             >
-             Location: {githubInfo.location}
+              Location: {githubInfo.location}
             </Text>
             <Text
               variant="body4"
               styleSheet={{
-                margin: '5px',
-                color: appConfig.theme.colors.neutrals[300]
+                margin: "5px",
+                color: appConfig.theme.colors.neutrals[300],
               }}
             >
-             Followers: {githubInfo.followers}
+              Followers: {githubInfo.followers}
             </Text>
           </Box>
           {/* Photo Area */}
