@@ -63,7 +63,7 @@ export default function PaginaInicial() {
               sm: "row",
             },
             width: "100%",
-            height: "400px",
+            height: { xs: "570px", sm: "400px"},
             maxWidth: "700px",
             borderRadius: "5px",
             padding: "32px",
@@ -157,14 +157,14 @@ export default function PaginaInicial() {
               flexDirection: "column",
               alignItems: "center",
               maxWidth: "200px",
-              height: "325px",
+              height: { xs: "310px", sm: "325px"},
               padding: "16px",
               backgroundColor: appConfig.theme.colors.neutrals[800],
               border: "1px solid",
               borderColor: appConfig.theme.colors.neutrals[999],
               borderRadius: "10px",
               flex: 1,
-              minHeight: "240px",
+              // minHeight: "315px",
             }}
           >
             <Image
