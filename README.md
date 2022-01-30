@@ -15,6 +15,7 @@ The following tools were used in building the project:
 - [React](https://pt-br.reactjs.org)
 - [Next](https://nextjs.org)
 - [SkynexUI](https://skynexui.dev)
+- [Supabase](https://supabase.com/)
 
 ## How to run the project
 
