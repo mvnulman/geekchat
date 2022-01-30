@@ -1,24 +1,50 @@
 import { Box, Text, TextField, Image, Button } from "@skynexui/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import appConfig from "../config.json";
 import { IoClose } from "react-icons/io5";
+import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzU1NTk4MSwiZXhwIjoxOTU5MTMxOTgxfQ.J_mM8RYx7SQ5AI7irXM56A_lRBjS8S6gW6LVQL2t6qU';
-const SUPABASE_URL = 'https://oxqgkykaxurntguobfbe.supabase.co'
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzU1NTk4MSwiZXhwIjoxOTU5MTMxOTgxfQ.J_mM8RYx7SQ5AI7irXM56A_lRBjS8S6gW6LVQL2t6qU";
+const SUPABASE_URL = "https://oxqgkykaxurntguobfbe.supabase.co";
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default function ChatPage(props) {
-  const [message, setmessage] = useState("");
+  const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+
+  useEffect(() => {
+    supabaseClient 
+      .from("messages")
+      .select("*")
+      .order('id', { ascending: false})
+      .then(({ data }) => {
+        console.log("Dados da consulta", data);
+        setMessageList(data);
+      });
+  }, []);
 
   function handleNewMessage(newMessage) {
     const message = {
-      id: messageList.length + 1,
+      // id: messageList.length + 1,
       from: "vanessametonini",
       text: newMessage,
     };
 
-    setMessageList([message, ...messageList]);
-    setmessage("");
+    supabaseClient
+    .from('messages')
+    .insert([
+      message
+    ])
+    .then(({data}) => {
+      console.log('Criando mensagem', data);
+      setMessageList([
+        data[0],
+        ...messageList,
+          ]);
+    });
+
+    setMessage("");
   }
 
   return (
@@ -91,7 +117,7 @@ export default function ChatPage(props) {
               value={message}
               onChange={(event) => {
                 const valor = event.target.value;
-                setmessage(valor);
+                setMessage(valor);
               }}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
@@ -217,7 +243,7 @@ function MessageList(props) {
                     display: "inline-block",
                     marginRight: "8px",
                   }}
-                  src={`https://github.com/vanessametonini.png`}
+                  src={`https://github.com/${message.from}.png`}
                 />
                 <Text tag="strong">{message.from}</Text>
                 <Text
