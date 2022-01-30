@@ -3,6 +3,9 @@ import { useState } from "react";
 import appConfig from "../config.json";
 import { IoClose } from "react-icons/io5";
 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzU1NTk4MSwiZXhwIjoxOTU5MTMxOTgxfQ.J_mM8RYx7SQ5AI7irXM56A_lRBjS8S6gW6LVQL2t6qU';
+const SUPABASE_URL = 'https://oxqgkykaxurntguobfbe.supabase.co'
+
 export default function ChatPage(props) {
   const [message, setmessage] = useState("");
   const [messageList, setMessageList] = useState([]);
