@@ -4,7 +4,7 @@
 
 ![1](https://user-images.githubusercontent.com/63374582/151678402-f5c29128-fc78-4fda-b16c-809bba52b9f6.JPG)
 
-![2](https://user-images.githubusercontent.com/63374582/151711985-ee555a2e-b190-483f-ab1e-c6a8970098a4.JPG)
+![screenshot](https://user-images.githubusercontent.com/63374582/151855932-3dcef2a5-20c0-4969-9ca1-096cf7980964.JPG)
 
 
 ## Technologies
