@@ -115,7 +115,7 @@ export default function PaginaInicial() {
             }}/> */}
 
             <TextField
-              placeholder="Type two or more characters..."
+              placeholder="Type the username..."
               value={username}
               onChange={function (event) {
                 const inputField = event.target.value;
@@ -193,7 +193,7 @@ export default function PaginaInicial() {
               username.length !== null &&
               username.trim()
                 ? username
-                : "User not found"}
+                : "No Username"}
             </Text>
             <Text
               variant="body4"
