@@ -173,7 +173,7 @@ export default function PaginaInicial() {
                 marginBottom: "16px",
               }}
               src={
-                username.length > 2 &&
+                username.length > 0 &&
                 username.length !== null &&
                 username.trim()
                   ? `https://github.com/${username}.png`
@@ -189,7 +189,7 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {username.length > 2 &&
+              {username.length > 0 &&
               username.length !== null &&
               username.trim()
                 ? username
