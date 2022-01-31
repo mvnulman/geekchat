@@ -13,6 +13,7 @@ export function ButtonSendSticker(props) {
     >
       <Button
         styleSheet={{
+          
           borderRadius: '50%',
           padding: '0 3px 0 0',
           minWidth: '50px',
@@ -27,6 +28,7 @@ export function ButtonSendSticker(props) {
           filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
           hover: {
             filter: 'grayscale(0)',
+            
           }
         }}
         label="😋"
@@ -68,7 +70,8 @@ export function ButtonSendSticker(props) {
               justifyContent: 'space-between',
               flex: 1,
               paddingTop: '16px',
-              overflow: 'scroll',
+              overflow: 'auto',
+
             }}
           >
             {appConfig.stickers.map((sticker) => (

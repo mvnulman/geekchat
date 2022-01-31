@@ -82,7 +82,7 @@ export default function PaginaInicial() {
                 alert("Please enter a username!");
                 return;
               } else {
-                router.push("chat");
+                router.push(`/chat?username=${username}`);
               }
             }}
             styleSheet={{

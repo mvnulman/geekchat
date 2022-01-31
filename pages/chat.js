@@ -3,46 +3,77 @@ import { useEffect, useState } from "react";
 import appConfig from "../config.json";
 import { IoClose } from "react-icons/io5";
 import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/router";
+import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzU1NTk4MSwiZXhwIjoxOTU5MTMxOTgxfQ.J_mM8RYx7SQ5AI7irXM56A_lRBjS8S6gW6LVQL2t6qU";
 const SUPABASE_URL = "https://oxqgkykaxurntguobfbe.supabase.co";
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-export default function ChatPage(props) {
+const listenMessagesRealTime = () => {
+  return supabaseClient
+  .from('messages')
+  .on("INSERT", () => {
+    console.log("New message!")
+  })
+  .subscribe();
+}
+
+export default function ChatPage() {
+  const router = useRouter();
+  const logedUser = router.query.username;
   const [message, setMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList] = useState([
+    // {
+    //   id: 1,
+    //   from: "mvnulman",
+    //   text: ":sticker: https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_3.png",
+    // },
+  ]);
 
   useEffect(() => {
-    supabaseClient 
+    supabaseClient
       .from("messages")
       .select("*")
-      .order('id', { ascending: false})
+      .order("id", { ascending: false })
       .then(({ data }) => {
-        console.log("Dados da consulta", data);
+        // console.log("Request data info:", data);
         setMessageList(data);
       });
+
+      const subscription = listenMessagesRealTime ((newMessage) => {
+        console.log('New message:', newMessage);
+        console.log('Message list:', messageList);
+
+        setMessageList((actualListValue) => {
+          console.log('Actual list value:', actualListValue);
+          return [
+            newMessage,
+            ...actualListValue,
+          ]
+        });
+      });
+
+      return () => {
+        subscription.unsubscribe();
+      };
   }, []);
 
   function handleNewMessage(newMessage) {
     const message = {
       // id: messageList.length + 1,
-      from: "vanessametonini",
+      from: logedUser,
       text: newMessage,
     };
 
     supabaseClient
-    .from('messages')
-    .insert([
-      message
-    ])
-    .then(({data}) => {
-      console.log('Criando mensagem', data);
-      setMessageList([
-        data[0],
-        ...messageList,
-          ]);
-    });
+      .from("messages")
+      .insert([message])
+      .then(({ data }) => {
+        console.log("Criando mensagem", data);
+        setMessageList([data[0], ...messageList]);
+      });
 
     setMessage("");
   }
@@ -138,6 +169,12 @@ export default function ChatPage(props) {
                 color: appConfig.theme.colors.neutrals[200],
               }}
             />
+            <ButtonSendSticker 
+              onStickerClick={(sticker) => {
+                handleNewMessage(`:sticker: ${sticker}`);
+
+              }}
+            />
             <Button
               type="button"
               label="Send"
@@ -149,8 +186,9 @@ export default function ChatPage(props) {
               }}
               styleSheet={{
                 marginBottom: "10px",
+                marginLeft: "10px",
                 width: "60px",
-                height: "60px",
+                height: "55px",
                 borderRadius: "10px",
                 backgroundColor: appConfig.theme.colors.neutrals[900],
               }}
@@ -269,7 +307,11 @@ function MessageList(props) {
                 }}
               />
             </Box>
-            {message.text}
+            {message.text.startsWith(":sticker:") ? (
+              <Image src={message.text.replace(":sticker:", "")} />
+            ) : (
+              message.text
+            )}
           </Text>
         );
       })}
