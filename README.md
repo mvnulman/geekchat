@@ -1,4 +1,4 @@
-# Geek Chat! (Under Construction...🚧)
+# Geek Chat!
 
 <!-- Project has been developing at Alura's React 4 Immersion -->
 
