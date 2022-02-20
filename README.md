@@ -24,7 +24,7 @@ To run the project you need to have [Node.js](https://nodejs.dev) and [Git](http
 1. Clone this repository.
 
 ```
-git clone https://github.com/lariodiniz/aluracord-raptalk.git
+git clone https://github.com/mvnulman/geekchat.git
 ```
 
 2. Access the project folder.
