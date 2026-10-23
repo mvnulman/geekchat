@@ -1195,19 +1195,23 @@ babel-preset-next@^1.4.0:
     "@babel/preset-react" "^7.10.1"
     babel-plugin-react-require "^3.1.3"
 
+baseline-browser-mapping@^2.11.29:
+  version "2.11.31"
+  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.11.31.tgz#09d43ad2aafb3da96c82c8478e70e679ee1235a8"
+
 big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.npmjs.org/big.js/-/big.js-5.2.2.tgz"
 
 browserslist@^4.17.5, browserslist@^4.19.1:
-  version "4.19.1"
-  resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.19.1.tgz"
+  version "4.29.4"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.29.4.tgz#c1efdbce30bc57a44e5a4bd849ff8e64d6a141b2"
   dependencies:
-    caniuse-lite "^1.0.30001286"
-    electron-to-chromium "^1.4.17"
-    escalade "^3.1.1"
-    node-releases "^2.0.1"
-    picocolors "^1.0.0"
+    baseline-browser-mapping "^2.11.29"
+    caniuse-lite "^1.0.30001816"
+    electron-to-chromium "^1.5.459"
+    node-releases "^2.0.59"
+    update-browserslist-db "^1.3.4"
 
 call-bind-apply-helpers@^1.0.1, call-bind-apply-helpers@^1.0.2:
   version "1.0.2"
@@ -1223,9 +1227,13 @@ call-bind@^1.0.0:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
-caniuse-lite@^1.0.30001283, caniuse-lite@^1.0.30001286:
+caniuse-lite@^1.0.30001283:
   version "1.0.30001302"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001302.tgz"
+
+caniuse-lite@^1.0.30001816:
+  version "1.0.30001819"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001819.tgz#4a0f8d7552a15909ce8a0c1dc2ccad9c8c0fab9d"
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -1323,9 +1331,9 @@ dunder-proto@^1.0.1:
     es-errors "^1.3.0"
     gopd "^1.2.0"
 
-electron-to-chromium@^1.4.17:
-  version "1.4.57"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.57.tgz"
+electron-to-chromium@^1.5.459:
+  version "1.5.463"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.463.tgz#c50be24baa76934f377198071e76b53e9685a301"
 
 emojis-list@^2.0.0:
   version "2.1.0"
@@ -1354,9 +1362,9 @@ es-set-tostringtag@^2.1.0:
     has-tostringtag "^1.0.2"
     hasown "^2.0.2"
 
-escalade@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz"
+escalade@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.2.0.tgz#011a3f69856ba189dffa7dc8fcce99d2a87903e5"
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -1628,9 +1636,9 @@ node-fetch@^3.1.0:
     fetch-blob "^3.1.4"
     formdata-polyfill "^4.0.10"
 
-node-releases@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.1.tgz"
+node-releases@^2.0.59:
+  version "2.0.60"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.60.tgz#e3104c3ceb4530578f546bcfda551a4a2de06939"
 
 object-assign@^4.1.1:
   version "4.1.1"
@@ -1652,10 +1660,6 @@ object.assign@^4.1.0:
 path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz"
-
-picocolors@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/picocolors/-/picocolors-1.0.0.tgz"
 
 picocolors@^1.1.1:
   version "1.1.1"
@@ -1910,6 +1914,13 @@ unicode-match-property-value-ecmascript@^2.0.0:
 unicode-property-aliases-ecmascript@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.0.0.tgz"
+
+update-browserslist-db@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.3.4.tgz#e8bd4596f6900805f9f12c5a5200c83c59c38faf"
+  dependencies:
+    escalade "^3.2.0"
+    picocolors "^1.1.1"
 
 use-subscription@1.5.1:
   version "1.5.1"
